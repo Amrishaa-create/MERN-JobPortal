@@ -1,7 +1,7 @@
 import axios from "axios"
 
 const API = axios.create({
-  baseURL: "http://localhost:4500/api",
+  baseURL: "https://api-mern-jobportal.onrender.com/api",
   withCredentials: true,
 })
 
