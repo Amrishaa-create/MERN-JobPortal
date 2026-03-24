@@ -25,29 +25,30 @@ connectDB()
 const app=express()
 app.use(express.json())
 app.use(cookieParser())
+app.use(cors())
 
-const allowedOrigins = [
-  "https://mern-job-portal-pkbj-myz42duy0-amrishaa-creates-projects.vercel.app",
-  "http://localhost:5174",
-  "http://localhost:5175"
-]
+// const allowedOrigins = [
+//   "https://mern-job-portal-pkbj-myz42duy0-amrishaa-creates-projects.vercel.app",
+//   "http://localhost:5174",
+//   "http://localhost:5175"
+// ]
 
-app.use(cors({
-  origin: function(origin, callback) {
-    if (!origin) return callback(null, true)
-    if (allowedOrigins.indexOf(origin) === -1) {
-      return callback(new Error('Not allowed by CORS'), false)
-    }
-    return callback(null, true)
-  },
-  credentials: true,
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  allowedHeaders: ["Content-Type", "Authorization"]
-}))
-app.options("*", cors({
-  origin: allowedOrigins,
-  credentials: true
-}));
+// app.use(cors({
+//   origin: function(origin, callback) {
+//     if (!origin) return callback(null, true)
+//     if (allowedOrigins.indexOf(origin) === -1) {
+//       return callback(new Error('Not allowed by CORS'), false)
+//     }
+//     return callback(null, true)
+//   },
+//   credentials: true,
+//   methods: ["GET", "POST", "PUT", "DELETE"],
+//   allowedHeaders: ["Content-Type", "Authorization"]
+// }))
+// app.options("*", cors({
+//   origin: allowedOrigins,
+//   credentials: true
+// }));
  
 app.use('/api/auth',authRoutes)
 app.use('/api/admin/jobs',adminJobRoutes)
