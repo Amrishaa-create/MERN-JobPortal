@@ -27,7 +27,7 @@ app.use(express.json())
 app.use(cookieParser())
 
 const allowedOrigins = [
-  "http://localhost:5173",
+  "https://mern-job-portal-pkbj-myz42duy0-amrishaa-creates-projects.vercel.app",
   "http://localhost:5174",
   "http://localhost:5175"
 ]
@@ -44,6 +44,10 @@ app.use(cors({
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"]
 }))
+app.options("*", cors({
+  origin: allowedOrigins,
+  credentials: true
+}));
  
 app.use('/api/auth',authRoutes)
 app.use('/api/admin/jobs',adminJobRoutes)
