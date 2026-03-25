@@ -14,7 +14,7 @@ function Applications() {
     try {
       setLoading(true)
       const res = await axios.get(
-        "http://localhost:4500/api/candidate/matches/my",
+        "/candidate/matches/my",
         { withCredentials: true }
       )
       setApplications(res.data)

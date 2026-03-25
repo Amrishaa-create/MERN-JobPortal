@@ -25,7 +25,7 @@ function BrowseJobs() {
   useEffect(() => { fetchJobs(); fetchSavedJobs() }, [])
   const fetchJobs = async () => {
     try {
-      const res = await axios.get("http://localhost:4500/api/candidate/jobs")
+      const res = await axios.get("/candidate/jobs")
       const normalized = res.data.map(job => ({
       ...job,
       requiredSkills: job.requiredSkills || job.skills || []
@@ -49,10 +49,10 @@ function BrowseJobs() {
     setSavingId(jobId)
     try {
       if (savedJobs.includes(jobId)) {
-        await axios.delete(`http://localhost:4500/api/saved-jobs/${jobId}`, { withCredentials: true })
+        await axios.delete(`https://api-mern-jobportal.onrender.com//saved-jobs/${jobId}`, { withCredentials: true })
         setSavedJobs(savedJobs.filter(id => id !== jobId))
       } else {
-        await axios.post("http://localhost:4500/api/saved-jobs", { jobId }, { withCredentials: true })
+        await axios.post("/saved-jobs", { jobId }, { withCredentials: true })
         setSavedJobs([...savedJobs, jobId])
       }
     } catch (error) {

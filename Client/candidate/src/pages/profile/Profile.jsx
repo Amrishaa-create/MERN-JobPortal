@@ -27,7 +27,7 @@ function Profile() {
   const fetchProfile = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:4500/api/users/me/candidate",
+        "/users/me/candidate",
         { withCredentials: true }
       )
       const userData = res.data?.user || res.data
@@ -47,7 +47,7 @@ function Profile() {
         ? form.skills.split(",").map(s => s.trim()).filter(Boolean)
         : []
       await axios.put(
-        "http://localhost:4500/api/users/me",
+        "/api/users/me",
         { name: form.name, skills: skillsArray, experience: form.experience, location: form.location },
         { withCredentials: true }
       )
@@ -74,7 +74,7 @@ function Profile() {
     try {
       setUploading(true)
       const res = await axios.put(
-        "http://localhost:4500/api/users/upload-resume",
+        "/users/upload-resume",
         formData,
         { withCredentials: true, headers: { "Content-Type": "multipart/form-data" } }
       )
@@ -97,7 +97,7 @@ function Profile() {
     if (!window.confirm("Delete your resume?")) return
     try {
       await axios.delete(
-        "http://localhost:4500/api/users/delete-resume",
+        "/users/delete-resume",
         { withCredentials: true }
       )
       setUser(prev => ({ ...prev, resume: null }))
@@ -321,7 +321,7 @@ function Profile() {
                     <div className="flex-1 min-w-0">
                       <p className="text-2xl font-black text-emerald-700">Resume Uploaded</p>
                       <a
-                        href={`http://localhost:4500/${user.resume}`}
+                        href={`https://api-mern-jobportal.onrender.com/${user.resume}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-2xl text-emerald-600 hover:underline font-semibold"

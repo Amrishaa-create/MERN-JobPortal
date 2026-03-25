@@ -15,7 +15,7 @@ function JobDetails() {
   const fetchJob = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:4500/api/candidate/jobs/${id}`,
+        `https://api-mern-jobportal.onrender.com/candidate/jobs/${id}`,
         { withCredentials: true }
       )
       setJob(res.data)
@@ -27,7 +27,7 @@ function JobDetails() {
     setApplying(true)
     try {
       await axios.post(
-        `http://localhost:4500/api/candidate/matches/${id}/apply`,
+        `https://api-mern-jobportal.onrender.com/candidate/matches/${id}/apply`,
         {},
         { withCredentials: true }
       )

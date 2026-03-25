@@ -29,7 +29,7 @@ function SavedJobs() {
     if (!jobId) return
     setRemoving(jobId)
     try {
-      await axios.delete(`http://localhost:4500/api/saved-jobs/${jobId}`, { withCredentials: true })
+      await axios.delete(`https://api-mern-jobportal.onrender.com/saved-jobs/${jobId}`, { withCredentials: true })
       setSavedJobs(savedJobs.filter(j => j.job?._id !== jobId))
     } catch (error) {
       console.log(error)

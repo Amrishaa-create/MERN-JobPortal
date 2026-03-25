@@ -24,7 +24,7 @@ function InterviewTracker() {
   const fetchInterviews = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:4500/api/interviews/my",
+        "/interviews/my",
         { withCredentials: true }
       )
       setInterviews(res.data)

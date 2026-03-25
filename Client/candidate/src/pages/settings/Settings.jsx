@@ -13,7 +13,7 @@ function Settings() {
   const changePassword = async () => {
     setLoading(true)
     try {
-      await axios.put("http://localhost:4500/api/users/change-password", form, { withCredentials: true })
+      await axios.put("/users/change-password", form, { withCredentials: true })
       setSuccess(true)
       setTimeout(() => { setOpen(false); setSuccess(false); setForm({ currentPassword: "", newPassword: "" }) }, 2000)
     } catch (error) {
@@ -25,7 +25,7 @@ function Settings() {
   const deleteAccount = async () => {
     if (!window.confirm("Are you sure? This action cannot be undone.")) return
     try {
-      await axios.delete("http://localhost:4500/api/users/me", { withCredentials: true })
+      await axios.delete("/users/me", { withCredentials: true })
       window.location.href = "/login"
     } catch (error) {
       alert("Error deleting account")
