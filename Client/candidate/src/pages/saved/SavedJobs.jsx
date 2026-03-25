@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import Layout from "../../components/layout/Layout"
-import axios from "axios"
+import API from "../../services/api"
 import { useNavigate } from "react-router-dom"
 import {Bookmark, BookmarkX, Briefcase, MapPin,BadgeDollarSign, ArrowRight} from "lucide-react"
 
@@ -17,7 +17,7 @@ function SavedJobs() {
   const fetchSavedJobs = async () => {
     try {
       setLoading(true)
-      const res = await axios.get("/saved-jobs/my", { withCredentials: true })
+      const res = await API.get("/saved-jobs/my", { withCredentials: true })
       setSavedJobs(res.data.filter(item => item.job !== null && item.job !== undefined))
     } catch (error) {
       console.log(error)
@@ -29,7 +29,7 @@ function SavedJobs() {
     if (!jobId) return
     setRemoving(jobId)
     try {
-      await axios.delete(`https://api-mern-jobportal.onrender.com/saved-jobs/${jobId}`, { withCredentials: true })
+      await API.delete(`/saved-jobs/${jobId}`, { withCredentials: true })
       setSavedJobs(savedJobs.filter(j => j.job?._id !== jobId))
     } catch (error) {
       console.log(error)

@@ -1,11 +1,8 @@
 import { useState, useEffect } from "react"
 import Layout from "../../components/layout/Layout"
-import axios from "axios"
+import API from "../../services/api"
 import { useNavigate } from "react-router-dom"
-import {
-  Briefcase, MapPin, BadgeDollarSign, Bookmark,
-  BookmarkCheck, ArrowRight, Search, X
-} from "lucide-react"
+import {Briefcase, MapPin, BadgeDollarSign, Bookmark,BookmarkCheck, ArrowRight, Search, X} from "lucide-react"
 
 const accentColors = [
   { border: "border-l-indigo-400", icon: "bg-indigo-50", iconText: "text-indigo-500" },
@@ -25,7 +22,7 @@ function BrowseJobs() {
   useEffect(() => { fetchJobs(); fetchSavedJobs() }, [])
   const fetchJobs = async () => {
     try {
-      const res = await axios.get("/candidate/jobs")
+      const res = await API.get("/candidate/jobs")
       const normalized = res.data.map(job => ({
       ...job,
       requiredSkills: job.requiredSkills || job.skills || []
@@ -39,7 +36,7 @@ function BrowseJobs() {
   }
   const fetchSavedJobs = async () => {
     try {
-      const res = await axios.get("/saved-jobs/my", { withCredentials: true })
+      const res = await API.get("/saved-jobs/my", { withCredentials: true })
       setSavedJobs(res.data.map(item => item.job._id))
     } catch (error) {
       console.log(error)
@@ -49,10 +46,10 @@ function BrowseJobs() {
     setSavingId(jobId)
     try {
       if (savedJobs.includes(jobId)) {
-        await axios.delete(`https://api-mern-jobportal.onrender.com/saved-jobs/${jobId}`, { withCredentials: true })
+        await API.delete(`/saved-jobs/${jobId}`, { withCredentials: true })
         setSavedJobs(savedJobs.filter(id => id !== jobId))
       } else {
-        await axios.post("/saved-jobs", { jobId }, { withCredentials: true })
+        await API.post("/saved-jobs", { jobId }, { withCredentials: true })
         setSavedJobs([...savedJobs, jobId])
       }
     } catch (error) {

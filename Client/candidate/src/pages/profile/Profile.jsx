@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import Layout from "../../components/layout/Layout"
-import axios from "axios"
+import API from "../../services/api"
 import {Mail, User, Briefcase, MapPin, Star, Edit3,Upload, Trash2, FileText, X, CheckCircle, Plus} from "lucide-react"
 
 function Sparkles({ size, className }) {
@@ -26,7 +26,7 @@ function Profile() {
   }
   const fetchProfile = async () => {
     try {
-      const res = await axios.get(
+      const res = await API.get(
         "/users/me/candidate",
         { withCredentials: true }
       )
@@ -46,8 +46,7 @@ function Profile() {
       const skillsArray = form.skills
         ? form.skills.split(",").map(s => s.trim()).filter(Boolean)
         : []
-      await axios.put(
-        "/api/users/me",
+      await API.put("/api/users/me",
         { name: form.name, skills: skillsArray, experience: form.experience, location: form.location },
         { withCredentials: true }
       )
@@ -73,8 +72,7 @@ function Profile() {
     formData.append("resume", resumeFile)
     try {
       setUploading(true)
-      const res = await axios.put(
-        "/users/upload-resume",
+      const res = await API.put( "/users/upload-resume",
         formData,
         { withCredentials: true, headers: { "Content-Type": "multipart/form-data" } }
       )
@@ -96,8 +94,7 @@ function Profile() {
   const deleteResume = async () => {
     if (!window.confirm("Delete your resume?")) return
     try {
-      await axios.delete(
-        "/users/delete-resume",
+      await API.delete( "/users/delete-resume",
         { withCredentials: true }
       )
       setUser(prev => ({ ...prev, resume: null }))
@@ -321,7 +318,7 @@ function Profile() {
                     <div className="flex-1 min-w-0">
                       <p className="text-2xl font-black text-emerald-700">Resume Uploaded</p>
                       <a
-                        href={`https://api-mern-jobportal.onrender.com${user.resume}`}
+                        href={`${user.resume}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-2xl text-emerald-600 hover:underline font-semibold"

@@ -1,7 +1,7 @@
 import Layout from "../../components/layout/Layout"
 import { Briefcase, CalendarDays, ArrowRight, TrendingUp, Star, Clock, CheckCircle, MapPin } from "lucide-react"
 import { useContext, useEffect, useState } from "react"
-import axios from "axios"
+import API from "../../services/api"
 import { AuthContext } from "../../context/AuthContext"
 import { useNavigate } from "react-router-dom"
 
@@ -34,7 +34,7 @@ function Dashboard() {
     setGreeting(hour < 12 ? "Good morning" : hour < 17 ? "Good afternoon" : "Good evening")
     const fetchDashboard = async () => {
       try {
-        const res = await axios.get(
+        const res = await API.get(
           "/candidate/dashboard",
           { withCredentials: true }
         )

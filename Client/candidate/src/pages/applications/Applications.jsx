@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import axios from "axios"
+import API from "../../services/api"
 import Layout from "../../components/layout/Layout"
 import ApplicationCard from "../../components/application/ApplicationCard"
 import { FileText, Search, X, SlidersHorizontal } from "lucide-react"
@@ -13,7 +13,7 @@ function Applications() {
   const fetchApplications = async () => {
     try {
       setLoading(true)
-      const res = await axios.get(
+      const res = await API.get(
         "/candidate/matches/my",
         { withCredentials: true }
       )

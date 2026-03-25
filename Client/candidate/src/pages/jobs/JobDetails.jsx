@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import Layout from "../../components/layout/Layout"
 import { useParams, useNavigate } from "react-router-dom"
-import axios from "axios"
+import API from "../../services/api"
 import {MapPin, BadgeDollarSign, Briefcase, Star,ArrowLeft, CheckCircle, Send, Building2, AlertCircle} from "lucide-react"
 
 function JobDetails() {
@@ -14,8 +14,8 @@ function JobDetails() {
   useEffect(() => { fetchJob() }, [])
   const fetchJob = async () => {
     try {
-      const res = await axios.get(
-        `https://api-mern-jobportal.onrender.com/candidate/jobs/${id}`,
+      const res = await API.get(
+        `/candidate/jobs/${id}`,
         { withCredentials: true }
       )
       setJob(res.data)
@@ -26,8 +26,8 @@ function JobDetails() {
   const applyJob = async () => {
     setApplying(true)
     try {
-      await axios.post(
-        `https://api-mern-jobportal.onrender.com/candidate/matches/${id}/apply`,
+      await API.post(
+        `/candidate/matches/${id}/apply`,
         {},
         { withCredentials: true }
       )

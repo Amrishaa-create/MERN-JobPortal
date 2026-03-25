@@ -1,6 +1,6 @@
 import { useState } from "react"
 import Layout from "../../components/layout/Layout"
-import axios from "axios"
+import API from "../../services/api"
 import { Shield, Trash2, Lock, Eye, EyeOff, X, AlertTriangle, CheckCircle } from "lucide-react"
 
 function Settings() {
@@ -13,7 +13,7 @@ function Settings() {
   const changePassword = async () => {
     setLoading(true)
     try {
-      await axios.put("/users/change-password", form, { withCredentials: true })
+      await API.put("/users/change-password", form, { withCredentials: true })
       setSuccess(true)
       setTimeout(() => { setOpen(false); setSuccess(false); setForm({ currentPassword: "", newPassword: "" }) }, 2000)
     } catch (error) {
@@ -25,7 +25,7 @@ function Settings() {
   const deleteAccount = async () => {
     if (!window.confirm("Are you sure? This action cannot be undone.")) return
     try {
-      await axios.delete("/users/me", { withCredentials: true })
+      await API.delete("/users/me", { withCredentials: true })
       window.location.href = "/login"
     } catch (error) {
       alert("Error deleting account")

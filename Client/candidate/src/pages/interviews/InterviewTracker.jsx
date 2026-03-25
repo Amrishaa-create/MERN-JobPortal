@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import Layout from "../../components/layout/Layout"
-import axios from "axios"
-import {Calendar, Clock, CheckCircle, XCircle,Video, MapPin, StickyNote, Briefcase, Building2} from "lucide-react"
+import API from "../../services/api"
+import {Calendar, Clock, CheckCircle, XCircle,Video, MapPin, StickyNote, Briefcase, Building2, AppleIcon} from "lucide-react"
 
 const statusConfig = {
   Scheduled: { bg: "bg-blue-50",    text: "text-blue-700",    border: "border-blue-200",    icon: <Clock size={14} />,       dot: "bg-blue-500" },
@@ -23,7 +23,7 @@ function InterviewTracker() {
   useEffect(() => { fetchInterviews() }, [])
   const fetchInterviews = async () => {
     try {
-      const res = await axios.get(
+      const res = await API.get(
         "/interviews/my",
         { withCredentials: true }
       )
@@ -140,7 +140,7 @@ function InterviewTracker() {
                     </div>
                     <div className="space-y-3">
                       <div className="flex items-center gap-3 bg-slate-50 rounded-2xl px-4 py-3">
-                        <Clock size={18} className="text-indigo-400 flex-shrink-0" />
+                        <Clock size={24} className="text-indigo-400 flex-shrink-0" />
                         <div>
                           <p className="text-xl font-black text-slate-400 uppercase tracking-wider">Date & Time</p>
                           <p className="text-lg md:text-2xl font-black text-slate-800">
