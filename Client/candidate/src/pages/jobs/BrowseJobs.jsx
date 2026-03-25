@@ -39,7 +39,7 @@ function BrowseJobs() {
   }
   const fetchSavedJobs = async () => {
     try {
-      const res = await axios.get("http://localhost:4500/api/saved-jobs/my", { withCredentials: true })
+      const res = await axios.get("/saved-jobs/my", { withCredentials: true })
       setSavedJobs(res.data.map(item => item.job._id))
     } catch (error) {
       console.log(error)

@@ -17,7 +17,7 @@ function SavedJobs() {
   const fetchSavedJobs = async () => {
     try {
       setLoading(true)
-      const res = await axios.get("http://localhost:4500/api/saved-jobs/my", { withCredentials: true })
+      const res = await axios.get("/saved-jobs/my", { withCredentials: true })
       setSavedJobs(res.data.filter(item => item.job !== null && item.job !== undefined))
     } catch (error) {
       console.log(error)
