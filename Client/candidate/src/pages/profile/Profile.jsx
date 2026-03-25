@@ -321,7 +321,7 @@ function Profile() {
                     <div className="flex-1 min-w-0">
                       <p className="text-2xl font-black text-emerald-700">Resume Uploaded</p>
                       <a
-                        href={`https://api-mern-jobportal.onrender.com/${user.resume}`}
+                        href={`https://api-mern-jobportal.onrender.com${user.resume}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-2xl text-emerald-600 hover:underline font-semibold"

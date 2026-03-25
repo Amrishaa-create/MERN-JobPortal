@@ -35,7 +35,7 @@ function Dashboard() {
     const fetchDashboard = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:4500/api/candidate/dashboard",
+          "/candidate/dashboard",
           { withCredentials: true }
         )
         setStats(res.data.stats || { applications: 0, interviews: 0 })

@@ -49,7 +49,7 @@ function BrowseJobs() {
     setSavingId(jobId)
     try {
       if (savedJobs.includes(jobId)) {
-        await axios.delete(`https://api-mern-jobportal.onrender.com//saved-jobs/${jobId}`, { withCredentials: true })
+        await axios.delete(`https://api-mern-jobportal.onrender.com/saved-jobs/${jobId}`, { withCredentials: true })
         setSavedJobs(savedJobs.filter(id => id !== jobId))
       } else {
         await axios.post("/saved-jobs", { jobId }, { withCredentials: true })
