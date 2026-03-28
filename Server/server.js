@@ -29,7 +29,7 @@ app.use(cookieParser())
 const allowedOrigins = [
   "https://mern-job-portal-vpk1.vercel.app",
   "https://mern-job-portal-yunu.vercel.app",
-  "https://mern-job-portal-elsq.vercel.app"
+  "https://mern-job-portal-o3sm.vercel.app"
 ]
 
 app.use(cors({
