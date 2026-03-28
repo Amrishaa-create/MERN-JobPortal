@@ -4,6 +4,7 @@ import cors from 'cors'
 import cookieParser from 'cookie-parser'
 import dns from 'node:dns/promises'
 import connectDB from './config/db.js'
+import path from 'path'
 
 import authRoutes from './routes/authRoutes.js'
 import adminRoutes from './routes/adminRoutes.js'
@@ -27,8 +28,8 @@ app.use(cookieParser())
 
 const allowedOrigins = [
   "https://mern-job-portal-vpk1.vercel.app",
-  "https://mern-job-portal-yunu.vercel.app",
-  "https://mern-job-portal-o3sm.vercel.app"
+  "https://mern-job-portal-o3sm.vercel.app",
+  "https://mern-job-portal-elsq.vercel.app"
 ]
 
 app.use(cors({
